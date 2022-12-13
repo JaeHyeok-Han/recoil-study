@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRecoilState, useRecoilValue } from "recoil";
+import { textState, charCountState } from "./store/textStore";
 
 function App() {
+  const [text, setText] = useRecoilState(textState);
+  const count = useRecoilValue(charCountState);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+      />
+      <p>글자수: {count}</p>
     </div>
   );
 }
